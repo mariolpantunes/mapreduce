@@ -15,6 +15,7 @@ def main(args):
             blob = f.read(args.blob_size)
             if not blob:
                 break
+            # This loop is used to not break word in half
             while not str.isspace(blob[-1]):
                 ch = f.read(1)
                 if not ch:
