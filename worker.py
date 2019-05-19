@@ -1,7 +1,6 @@
 # coding: utf-8
 
 
-import socket
 import logging
 import argparse
 
@@ -11,12 +10,13 @@ logger = logging.getLogger('worker')
 
 
 def main(args):
-    pass
+    logger.debug('Connecting to %s:%d', args.hostname, args.port)
 
 
 if __name__ == '__main__':
     parser = argparse.ArgumentParser(description='MapReduce worker')
-    parser.add_argument('-p', dest='port', type=int, help='coordinator port', default=5000)
+    parser.add_argument('--port', dest='port', type=int, help='coordinator port', default=8765)
+    parser.add_argument('--hostname', dest='hostname', type=str, help='coordinator hostname', default='localhost')
     args = parser.parse_args()
     
     main(args)
