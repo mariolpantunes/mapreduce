@@ -15,6 +15,11 @@ def main(args):
             blob = f.read(args.blob_size)
             if not blob:
                 break
+            while not str.isspace(blob[-1]):
+                ch = f.read(1)
+                if not ch:
+                    break
+                blob += ch
             logger.debug('Blob: %s', blob)
             datastore.append(blob)
 
