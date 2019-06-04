@@ -1,5 +1,8 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
+PERIOD=${1:-1}
+RECOVER=${2:-10}
+PROBABILITY=${3:-10}
 
 while :
 do
@@ -8,13 +11,13 @@ do
 	procs="$workers $coordenators"
 
 	for pid in $procs; do
-		kill_probability=$((RANDOM % 10))
+		kill_probability=$((RANDOM % $PROBABILITY))
 		echo "$kill_probability ? $pid"
 		if [ "$kill_probability" -lt 1 ]; then
 			kill -HUP $pid
 			echo "Killed pid $pid, giving you 10 sec to recover"
-			sleep 10 
+			sleep $RECOVER 
 		fi
 	done
-	sleep 1
+	sleep $PERIOD
 done
