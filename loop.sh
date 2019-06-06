@@ -1,4 +1,5 @@
-#!/bin/bash
+#!/usr/bin/env bash
+
 if [ $# -lt 1 ]; then
 	echo "Usage: loop.sh process"
 	echo "Example: loop.sh coordinator -f lusiadas.txt"
@@ -9,10 +10,9 @@ proc="$1"
 shift
 args="$@"
 
-while :
-do
+while [[ $RV != 0 ]]; do
 	python3 $proc.py $args
-	echo "Press <CTRL+C> to exit."
+	RV=$?
 	sleep 1
 done
 
