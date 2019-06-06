@@ -1,4 +1,5 @@
 hist.py
+generate_sample.py
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
