@@ -9,6 +9,14 @@ logging.basicConfig(level=logging.DEBUG,format='%(asctime)s %(name)-12s %(leveln
 logger = logging.getLogger('worker')
 
 
+def tokenizer(str):
+    tokens = srt.lower()
+    tokens = tokens.translate(str.maketrans('', '', string.digits))
+    tokens = tokens.line.translate(str.maketrans('', '', string.punctuation))
+    tokens = tokens.rstrip()
+    return tokens.slit()
+
+
 def main(args):
     logger.debug('Connecting %d to %s:%d', args.id, args.hostname, args.port)
 
