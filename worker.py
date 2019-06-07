@@ -1,6 +1,7 @@
 # coding: utf-8
 
 
+import string
 import logging
 import argparse
 
@@ -9,8 +10,8 @@ logging.basicConfig(level=logging.DEBUG,format='%(asctime)s %(name)-12s %(leveln
 logger = logging.getLogger('worker')
 
 
-def tokenizer(str):
-    tokens = srt.lower()
+def tokenizer(text):
+    tokens = text.lower()
     tokens = tokens.translate(str.maketrans('', '', string.digits))
     tokens = tokens.line.translate(str.maketrans('', '', string.punctuation))
     tokens = tokens.rstrip()
