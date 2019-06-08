@@ -13,9 +13,9 @@ logger = logging.getLogger('worker')
 def tokenizer(text):
     tokens = text.lower()
     tokens = tokens.translate(str.maketrans('', '', string.digits))
-    tokens = tokens.line.translate(str.maketrans('', '', string.punctuation))
+    tokens = tokens.translate(str.maketrans('', '', string.punctuation))
     tokens = tokens.rstrip()
-    return tokens.slit()
+    return tokens.split()
 
 
 def main(args):
