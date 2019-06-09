@@ -10,10 +10,11 @@ logging.basicConfig(level=logging.DEBUG,format='%(asctime)s %(name)-12s %(leveln
 logger = logging.getLogger('worker')
 
 
-def tokenizer(text):
-    tokens = text.lower()
+def tokenizer(txt):
+    tokens = txt.lower()
     tokens = tokens.translate(str.maketrans('', '', string.digits))
     tokens = tokens.translate(str.maketrans('', '', string.punctuation))
+    tokens = tokens.translate(str.maketrans('', '', '«»'))
     tokens = tokens.rstrip()
     return tokens.split()
 
