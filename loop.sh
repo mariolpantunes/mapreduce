@@ -15,4 +15,3 @@ while [[ $RV != 0 ]]; do
 	RV=$?
 	sleep 1
 done
-

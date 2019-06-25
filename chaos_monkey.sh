@@ -1,14 +1,22 @@
 #!/usr/bin/env bash
 
-PERIOD=${1:-1}
-RECOVER=${2:-10}
-PROBABILITY=${3:-10}
+PROBABILITY=${1:-10}
+ENTITY=${2:-3}
+PERIOD=${3:-1}
+RECOVER=${4:-10}
 
 while :
 do
 	workers=`pgrep -f worker.py | xargs`
 	coordenators=`pgrep -f coordinator.py | xargs`
-	procs="$workers $coordenators"
+	
+	case $ENTITY in
+		0) procs="" ;;
+		1) procs="$workers" ;;
+		2) procs="$coordenators" ;;
+		3) procs="$workers $coordenators" ;;
+		*) procs="" ;;
+	esac
 
 	for pid in $procs; do
 		kill_probability=$((RANDOM % $PROBABILITY))
